@@ -34,13 +34,14 @@ namespace UpYun.SDK
         public async Task Upload(string path, byte[] datas, Dictionary<string, string> headers = null)
         {
             headers = headers ?? new Dictionary<string, string>();
+            headers = new Dictionary<string, string>(headers, StringComparer.OrdinalIgnoreCase);
             path = "/" + this.BucketName + path;
             await this.Request(path, HttpMethod.Post, headers, datas);
         }
         public async Task<MulitUploadResModel> MulitUploadInitiate(string path, int fileSize, string fileMime, Dictionary<string, string> headers = null)
         {
             headers = headers ?? new Dictionary<string, string>();
-
+            headers = new Dictionary<string, string>(headers, StringComparer.OrdinalIgnoreCase);
             headers["X-Upyun-Multi-Stage"] = "initiate";
             headers["X-Upyun-Multi-Type"] = fileMime;
             headers["X-Upyun-Multi-Length"] = fileSize.ToString();
@@ -58,7 +59,7 @@ namespace UpYun.SDK
 
         public async Task<MulitUploadResModel> MulitUploadPart(string path, MulitUploadResModel model, byte[] datas)
         {
-            Dictionary<string, string> headers = new Dictionary<string, string>() {
+            Dictionary<string, string> headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
                 { "X-Upyun-Multi-Stage","upload"},
                 { "X-Upyun-Multi-Uuid",model.FileId},
                 { "X-Upyun-Part-Id",model.PartId}
@@ -75,7 +76,7 @@ namespace UpYun.SDK
         }
         public async Task<MulitUploadResModel> MulitUploadComplete(string path, MulitUploadResModel model)
         {
-            Dictionary<string, string> headers = new Dictionary<string, string>() {
+            Dictionary<string, string> headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
                 { "X-Upyun-Multi-Stage","complete"},
                 { "X-Upyun-Multi-Uuid",model.FileId}
             };
