@@ -153,7 +153,7 @@ namespace UpYun.SDK
                     }
                 }
             }
-            catch (System.Net.WebException ex)
+            catch (WebException ex)
             {
                 using (var stream = ex.Response.GetResponseStream())
                 {
