@@ -1,2 +1,4 @@
-# UpYun.SDK
-UpYun.SDK
+# upyun 又拍云C#云存储sdk。
+
+1.上传文件
+2.分片上传文件
