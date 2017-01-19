@@ -251,3 +251,4 @@ paket-files/
 .idea/
 *.sln.iml
 /UpYun.SDK/UpYun.SDK.Test/r.txt
+/UpYun.SDK/.publish/
